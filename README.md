@@ -1,16 +1,15 @@
 # Corteza ALL-IN-ONE Dockerfile
 
-WIP, right now you can use it this way:
+## BUILD:
+```bash
+docker build -t corteza/all-in-one
+```
 
-Let's say we have:
-
-* percona container on network 'TEST'  and
-* we host it on 387338.xyz,
-
+## RUN:
 ```bash
 API=90
-HOST="387338.xyz"
-PERCONA='corteza:change-me@tcp(percona:3306)/corteza?collation=utf8mb4_general_ci'
+HOST="example.com"
+PERCONA='corteza:change-me@tcp(example.com:3306)/corteza?collation=utf8mb4_general_ci'
 SPA=93
 
 docker run \
@@ -21,7 +20,6 @@ docker run \
     -p ${SPA}:${SPA} \
     -e LOCAL_DEMO_SPA_PORT=${SPA} \
     -e HOSTADDR=${HOST} \
-    --network TEST \
     -e DB_DSN=${PERCONA} \
-    cbuctok/xx
+    corteza/all-in-one
 ```
